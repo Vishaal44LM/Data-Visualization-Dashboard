@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bell, Search, Settings, User } from "lucide-react";
+import { Bell, Search, Settings, User, Home } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,15 +13,39 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNotificationsClick = () => {
+    navigate('/notifications');
+  };
+
+  const handleSettingsClick = () => {
+    navigate('/settings');
+  };
+
+  const handleProfileClick = () => {
+    navigate('/profile');
+  };
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
           <div className="flex items-center space-x-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">D</span>
-            </div>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={handleHomeClick}
+              className={location.pathname === '/' ? 'bg-accent' : ''}
+            >
+              <Home className="h-5 w-5" />
+            </Button>
             <div>
               <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
               <p className="text-sm text-gray-500">Analytics & Insights</p>
@@ -40,26 +65,41 @@ const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="relative">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className={`relative ${location.pathname === '/notifications' ? 'bg-accent' : ''}`}
+              onClick={handleNotificationsClick}
+            >
               <Bell className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full"></span>
             </Button>
             
-            <Button variant="ghost" size="icon">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className={location.pathname === '/settings' ? 'bg-accent' : ''}
+              onClick={handleSettingsClick}
+            >
               <Settings className="h-5 w-5" />
             </Button>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  className={location.pathname === '/profile' ? 'bg-accent' : ''}
+                >
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleProfileClick}>Profile</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSettingsClick}>Settings</DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem>Sign out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

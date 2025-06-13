@@ -1,159 +1,119 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  Users, 
+  TrendingUp, 
+  ShoppingCart, 
+  DollarSign,
+} from "lucide-react";
 import Header from "./dashboard/Header";
 import MetricsCard from "./dashboard/MetricsCard";
 import RevenueChart from "./dashboard/RevenueChart";
 import UserGrowthChart from "./dashboard/UserGrowthChart";
-import CategoryPieChart from "./dashboard/CategoryPieChart";
 import TrafficAreaChart from "./dashboard/TrafficAreaChart";
-import { TrendingUp, Users, DollarSign, ShoppingCart, Activity } from "lucide-react";
+import CategoryPieChart from "./dashboard/CategoryPieChart";
 
 const Dashboard = () => {
-  const metricsData = [
+  const [selectedPeriod, setSelectedPeriod] = useState("7d");
+
+  const metrics = [
     {
-      title: "Total Revenue",
-      value: "$45,231.89",
-      change: "+20.1%",
-      trend: "up",
-      icon: DollarSign,
-      description: "from last month"
-    },
-    {
-      title: "Active Users",
-      value: "2,350",
-      change: "+180.1%",
-      trend: "up",
+      title: "Total Users",
+      value: "12,543",
+      change: "+12.5%",
+      trend: "up" as const,
       icon: Users,
       description: "from last month"
     },
     {
-      title: "Sales",
-      value: "+12,234",
-      change: "+19%",
-      trend: "up",
+      title: "Revenue",
+      value: "$48,392",
+      change: "+8.2%",
+      trend: "up" as const,
+      icon: DollarSign,
+      description: "from last month"
+    },
+    {
+      title: "Orders",
+      value: "1,429",
+      change: "-2.1%",
+      trend: "down" as const,
       icon: ShoppingCart,
       description: "from last month"
     },
     {
-      title: "Conversion Rate",
-      value: "3.2%",
-      change: "+5.4%",
-      trend: "up",
-      icon: Activity,
+      title: "Growth Rate",
+      value: "23.4%",
+      change: "+4.3%",
+      trend: "up" as const,
+      icon: TrendingUp,
       description: "from last month"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
       <main className="container mx-auto px-6 py-8">
+        {/* Page Title */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard Overview</h1>
+          <p className="text-gray-600">Track your business metrics and performance</p>
+        </div>
+
         {/* Metrics Cards */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-          {metricsData.map((metric, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {metrics.map((metric, index) => (
             <MetricsCard key={index} {...metric} />
           ))}
         </div>
 
-        <Tabs defaultValue="overview" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-            <TabsTrigger value="reports">Reports</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="overview" className="space-y-8">
-            {/* Revenue and User Growth Charts */}
-            <div className="grid gap-6 lg:grid-cols-2">
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <TrendingUp className="h-5 w-5 text-blue-600" />
-                    Revenue Overview
-                  </CardTitle>
-                  <CardDescription>
-                    Monthly revenue trends for the past year
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <RevenueChart />
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="h-5 w-5 text-green-600" />
-                    User Growth
-                  </CardTitle>
-                  <CardDescription>
-                    New user registrations over time
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <UserGrowthChart />
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Category Distribution and Traffic */}
-            <div className="grid gap-6 lg:grid-cols-2">
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle>Category Distribution</CardTitle>
-                  <CardDescription>
-                    Sales breakdown by product categories
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <CategoryPieChart />
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle>Website Traffic</CardTitle>
-                  <CardDescription>
-                    Daily visitors and page views
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <TrafficAreaChart />
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="analytics" className="space-y-8">
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <CardTitle>Advanced Analytics</CardTitle>
-                <CardDescription>
-                  Detailed insights and performance metrics
-                </CardDescription>
+                <CardTitle>Revenue Analytics</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Advanced analytics features coming soon...</p>
+                <RevenueChart />
               </CardContent>
             </Card>
-          </TabsContent>
+          </div>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Category Distribution</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CategoryPieChart />
+            </CardContent>
+          </Card>
+        </div>
 
-          <TabsContent value="reports" className="space-y-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Custom Reports</CardTitle>
-                <CardDescription>
-                  Generate and export custom reports
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Custom reporting tools coming soon...</p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+        {/* Additional Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>User Growth</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <UserGrowthChart />
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Traffic Overview</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <TrafficAreaChart />
+            </CardContent>
+          </Card>
+        </div>
       </main>
     </div>
   );
