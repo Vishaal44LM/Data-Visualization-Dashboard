@@ -6,7 +6,7 @@ import {
   Users, 
   TrendingUp, 
   ShoppingCart, 
-  DollarSign,
+  IndianRupee,
 } from "lucide-react";
 import Header from "./dashboard/Header";
 import MetricsCard from "./dashboard/MetricsCard";
@@ -29,10 +29,10 @@ const Dashboard = () => {
     },
     {
       title: "Revenue",
-      value: "$48,392",
+      value: "₹48,392",
       change: "+8.2%",
       trend: "up" as const,
-      icon: DollarSign,
+      icon: IndianRupee,
       description: "from last month"
     },
     {

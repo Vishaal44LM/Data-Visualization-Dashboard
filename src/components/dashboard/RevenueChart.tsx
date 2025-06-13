@@ -32,7 +32,7 @@ const RevenueChart = () => {
             axisLine={{ stroke: '#e0e0e0' }}
           />
           <Tooltip 
-            formatter={(value) => [`$${value}`, 'Revenue']}
+            formatter={(value) => [`₹${value}`, 'Revenue']}
             labelStyle={{ color: '#333' }}
             contentStyle={{ 
               backgroundColor: 'white', 

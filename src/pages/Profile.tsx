@@ -45,33 +45,33 @@ const Profile = () => {
                 <div className="flex justify-center mb-4">
                   <Avatar className="w-24 h-24">
                     <AvatarImage src="/placeholder.svg" alt="Profile" />
-                    <AvatarFallback className="text-xl">JD</AvatarFallback>
+                    <AvatarFallback className="text-xl">VT</AvatarFallback>
                   </Avatar>
                 </div>
-                <CardTitle>John Doe</CardTitle>
+                <CardTitle>Vishaal Thennarasu</CardTitle>
                 <p className="text-gray-600">Product Manager</p>
                 <Badge variant="secondary" className="mt-2">Pro Member</Badge>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Mail className="h-4 w-4" />
-                  <span>john.doe@example.com</span>
+                  <span>vishaalthennarasu@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Phone className="h-4 w-4" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+91 7305260551</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <MapPin className="h-4 w-4" />
-                  <span>San Francisco, CA</span>
+                  <span>Chennai, TN</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Calendar className="h-4 w-4" />
-                  <span>Joined March 2023</span>
+                  <span>Joined March 2025</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Globe className="h-4 w-4" />
-                  <span>www.johndoe.com</span>
+                  <span>www.vishaalthennarasu.com</span>
                 </div>
               </CardContent>
             </Card>
@@ -113,7 +113,7 @@ const Profile = () => {
                     <Label htmlFor="firstName">First Name</Label>
                     <Input 
                       id="firstName" 
-                      defaultValue="John" 
+                      defaultValue="Vishaal" 
                       disabled={!isEditing}
                     />
                   </div>
@@ -121,7 +121,7 @@ const Profile = () => {
                     <Label htmlFor="lastName">Last Name</Label>
                     <Input 
                       id="lastName" 
-                      defaultValue="Doe" 
+                      defaultValue="Thennarasu" 
                       disabled={!isEditing}
                     />
                   </div>
@@ -132,7 +132,7 @@ const Profile = () => {
                   <Input 
                     id="email" 
                     type="email" 
-                    defaultValue="john.doe@example.com" 
+                    defaultValue="vishaalthennarasu@gmail.com" 
                     disabled={!isEditing}
                   />
                 </div>
@@ -141,7 +141,7 @@ const Profile = () => {
                   <Label htmlFor="phone">Phone</Label>
                   <Input 
                     id="phone" 
-                    defaultValue="+1 (555) 123-4567" 
+                    defaultValue="+91 7305260551" 
                     disabled={!isEditing}
                   />
                 </div>
@@ -150,7 +150,7 @@ const Profile = () => {
                   <Label htmlFor="location">Location</Label>
                   <Input 
                     id="location" 
-                    defaultValue="San Francisco, CA" 
+                    defaultValue="Chennai, TN" 
                     disabled={!isEditing}
                   />
                 </div>
